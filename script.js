@@ -30,6 +30,26 @@ function togglePlay() {
 
 // Progress Bar ---------------------------------- //
 
+function displayTime(time) {
+  let seconds = Math.floor(time % 60);
+  const minutes = Math.floor(time / 60);
+
+  seconds = seconds > 9 ? seconds : `0${seconds}`;
+  console.log(seconds > 9 ? seconds : `0${seconds}`);
+
+  return `${minutes}:${seconds}`;
+}
+
+// update progress bar as video plays
+
+function updateProgress() {
+  progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
+
+  currentTime.textContent = displayTime(video.currentTime);
+
+  duration.textContent = displayTime(video.duration);
+}
+
 // Volume Controls --------------------------- //
 
 // Change Playback Speed -------------------- //
@@ -43,3 +63,6 @@ video.addEventListener("click", togglePlay);
 
 // video end, show play button icon
 video.addEventListener("ended", showPlayIcon);
+
+video.addEventListener("timeupdate", updateProgress);
+video.addEventListener("canplay", updateProgress);

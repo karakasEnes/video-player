@@ -174,8 +174,14 @@ video {
   margin-right: 15px;
 }
 
+select,
+option {
+  cursor: pointer;
+}
+
 select {
-  background: transparent;
+  appearance: none;
+  background-color: transparent;
   color: var(--font-color);
   border: none;
   font-size: 18px;
@@ -184,19 +190,14 @@ select {
   border-radius: 5px;
 }
 
-select > option {
-  background: rgba(0, 0, 0, 0.9);
-  border: none;
-  font-size: 14px;
-}
-
-select,
-option {
-  cursor: pointer;
-}
-
 select:focus {
   outline: none;
+}
+
+select > option {
+  background-color: rgba(0, 0, 0, 0.9);
+  border: none;
+  font-size: 14px;
 }
 
 /* Elapsed Time & Duration */
@@ -205,6 +206,17 @@ select:focus {
   color: var(--font-color);
   font-weight: bold;
   user-select: none;
+}
+
+/* Fullscreen */
+.fullscreen {
+  cursor: pointer;
+}
+
+.video-fullscreen {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Fullscreen */
