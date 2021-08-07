@@ -175,6 +175,7 @@ video {
 }
 
 select {
+  background: transparent;
   color: var(--font-color);
   border: none;
   font-size: 18px;
@@ -187,6 +188,15 @@ select > option {
   background: rgba(0, 0, 0, 0.9);
   border: none;
   font-size: 14px;
+}
+
+select,
+option {
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
 }
 
 /* Elapsed Time & Duration */
