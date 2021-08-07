@@ -46,8 +46,16 @@ function updateProgress() {
   progressBar.style.width = `${(video.currentTime / video.duration) * 100}%`;
 
   currentTime.textContent = displayTime(video.currentTime);
-
   duration.textContent = displayTime(video.duration);
+}
+
+//seek at progress bar
+function setProggress(e) {
+  const newTime = e.offsetX / progressRange.offsetWidth;
+  progressBar.style.width = `${newTime * 100}%`;
+  currentTime.textContent = displayTime(video.currentTime);
+
+  video.currentTime = newTime * video.duration;
 }
 
 // Volume Controls --------------------------- //
@@ -66,3 +74,5 @@ video.addEventListener("ended", showPlayIcon);
 
 video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("canplay", updateProgress);
+
+progressRange.addEventListener("click", setProggress);
