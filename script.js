@@ -35,7 +35,6 @@ function displayTime(time) {
   const minutes = Math.floor(time / 60);
 
   seconds = seconds > 9 ? seconds : `0${seconds}`;
-  console.log(seconds > 9 ? seconds : `0${seconds}`);
 
   return `${minutes}:${seconds}`;
 }
@@ -60,6 +59,34 @@ function setProggress(e) {
 
 // Volume Controls --------------------------- //
 
+function setVolumeBar(e) {
+  let volumeNumber = e.offsetX / volumeRange.offsetWidth;
+
+  if (volumeNumber < 0.15) {
+    volumeNumber = 0;
+  } else if (volumeNumber > 0.85) {
+    volumeNumber = 1;
+  }
+
+  video.volume = volumeNumber;
+  volumeBar.style.width = `${video.volume * 100}% `;
+
+  //change icon
+  volumeIcon.className = "";
+
+  if (volumeNumber > 0.7) {
+    volumeIcon.classList.add("fas", "fa-volume-up");
+  } else if (volumeNumber < 0.7 && volumeNumber > 0) {
+    volumeIcon.classList.add("fas", "fa-volume-down");
+  } else if (volumeNumber === 0) {
+    volumeIcon.classList.add("fas", "fa-volume-off");
+  }
+}
+
+function toggleVolume() {
+  video.muted ? false : (video.volume = 0);
+}
+
 // Change Playback Speed -------------------- //
 
 // Fullscreen ------------------------------- //
@@ -76,3 +103,6 @@ video.addEventListener("timeupdate", updateProgress);
 video.addEventListener("canplay", updateProgress);
 
 progressRange.addEventListener("click", setProggress);
+
+volumeRange.addEventListener("click", setVolumeBar);
+// volumeIcon.addEventListener("click", toggleVolume);
